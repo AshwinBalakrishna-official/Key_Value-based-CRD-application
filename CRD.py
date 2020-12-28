@@ -36,7 +36,8 @@ def read(key):
                 ob1=str(key)+":"+str(in3[0]) #IF KEY IS STILL PRESENT THEN RETURN IT IN JSON OBJECT FORMAT AS A KEY PAIR
                 return ob1
             else:
-                print(key," HAS ALREADY EXPIRED") #EXPIRED MESSAGE FOR TIMEOUT
+                print(key,"HAS ALREADY EXPIRED") #EXPIRED MESSAGE FOR TIMEOUT
+                del in1[key]
         else:
             ob1=str(key)+":"+str(in3[0])
             return ob1
@@ -72,7 +73,7 @@ def update(key,value):
                 in2.append(in1[1])
                 in1[key]=in2
         else:
-            print(key," HAS ALREADY EXPIRED") #EXPIRY CHECK
+            print(key,"HAS ALREADY EXPIRED") #EXPIRY CHECK
     else:
         if key not in in1:
             print("KEY DOES NOT EXIST") #AVAILABILITY CHECK
