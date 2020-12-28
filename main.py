@@ -6,12 +6,14 @@ op.create("apple",35)
 
 op.create("banana",45)
 
-op.create("carrot",30,45) #CREATING A KEY PAIR WITH A TIMEOUT WITH TIMEOUT MENTIONED IN (number of seconds)
+op.create("carrot",30)
+
+op.create("dates",50,300) #CREATING A KEY PAIR WITH A TIMEOUT WITH TIMEOUT MENTIONED IN (number of seconds)
 
 #READING THE VALUES
-op.read("apple") #RETURNS THE VALUE IN THE JSON object FORMAT OF "key:pair"
+op.read("apple") #RETURNS THE VALUE IN THE JSON object FORMAT OF "key:pair" OF A NON-TIMEOUT ELEMENT
 
-op.read("carrot")
+op.read("dates")#RETURNS THE VALUE IN THE JSON object FORMAT OF "key:pair" OF A TIMEOUT APPLICABLE ELEMENT
 
 
 #UPDATE THE VALUE
@@ -20,9 +22,15 @@ op.update("apple",40) #UPDATING OR MODIFYING THE EXISTING VALUES OF THE APPLE KE
 #DELETING THE VALUE 
 op.delete("banana") #REMOVING A PARTICULAR VALUE FROM THE DATA STORE
 
-time.sleep(50)#DELAY BEING ADDED TO CHECK THE PROCESS OF TIMEOUT ELEMENT WORKING OR NOT
+#CHECKING IF THE TIMEOUT ELEMENT HAS EXPIRED OR NOT AFTER 300 SECS
+op.read("dates")
 
-op.read("carrot")
-
-#DISPLAYING ALL THE ELEMENTS
+#DISPLAYING ALL THE ELEMENTS PRESENT IN DATA STORE
 op.display()
+
+#USING MULTIPLE THREADS TO ACCESS THE PROGRAM IS POSSIBLE BUT IT'S NOT GONNA CAUSE ANY TROUBLE SINCE THE DATA STORE IS ACCESSED ONE OPERATION AT A TIME
+th_1=Thread(target=(create or read or delete),args=(key_name,value,timeout)) #ASSIGNING EACH OPERATION WITH ITS NECESSARY VALUES
+th_1.start()
+th_1.sleep()
+
+#YOU CAN MAKE MULTIPLE THREADS UPTO "th_n" and there is still going to be no problems though multiple threads are used since the race conditions are not going to affect it.
