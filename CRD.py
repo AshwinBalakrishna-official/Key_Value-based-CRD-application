@@ -86,3 +86,4 @@ def update(key,value):
 #OPERATION 5 : TO DISPLAY ALL ELEMENTS OF THE KEY VALUE PAIR
 def display():
     print(in1)
+

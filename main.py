@@ -1,5 +1,7 @@
 import CRD as op #importing the crd.py file to call the various functions created and referecning it as "op" stanging for output
-import time #FOR ADDING DELAY TO KILL THE TIMEOUT DATA
+import time         #USED FOR TIMEOUT USEAGE
+import threading    #USE IMPORT THREAD FOR PYTHON VERSIONS BELOW 3.0
+from threading import *
 
 #CREATING OR ADDING A NEW VALUE
 op.create("apple",35)
@@ -29,8 +31,9 @@ op.read("dates")
 op.display()
 
 #USING MULTIPLE THREADS TO ACCESS THE PROGRAM IS POSSIBLE BUT IT'S NOT GONNA CAUSE ANY TROUBLE SINCE THE DATA STORE IS ACCESSED ONE OPERATION AT A TIME
-th_1=Thread(target=(create or read or delete),args=(key_name,value,timeout)) #ASSIGNING EACH OPERATION WITH ITS NECESSARY VALUES
+th_1=Thread(target=(op.create),args=("plum",45,)) #ASSIGNING EACH OPERATION WITH ITS NECESSARY VALUES
 th_1.start()
-th_1.sleep()
-
+th_1.join()
 #YOU CAN MAKE MULTIPLE THREADS UPTO "th_n" and there is still going to be no problems though multiple threads are used since the race conditions are not going to affect it.
+
+
